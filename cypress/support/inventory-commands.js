@@ -2,6 +2,7 @@ Cypress.Commands.add('chooseSorting', (order) => {
     cy.get('[data-test="product-sort-container"]')
         .select(order)
 })
+
 Cypress.Commands.add('checkSortingByPrice', (order) => {
     cy.chooseSorting(order)
     cy.get('[data-test="inventory-item-price"]').then(($prices) => {
@@ -24,6 +25,7 @@ Cypress.Commands.add('checkSortingByPrice', (order) => {
         expect(prices).to.deep.equal(sortedPrices)
     })
 })
+
 Cypress.Commands.add('checkSortingByName', (order) => {
     cy.chooseSorting(order)
     cy.get('[data-test="inventory-item-name"]').then(($names) => {
@@ -41,4 +43,17 @@ Cypress.Commands.add('checkSortingByName', (order) => {
         // Check that the original names array matches the sorted names array
         expect(names).to.deep.equal(sortedNames)
     })
+})
+
+Cypress.Commands.add('addToCartFromInventory', (name) => {
+    cy.contains(name)
+        .parents('[data-test="inventory-item"]')
+        .find('.btn_inventory')
+        .click()
+})
+
+Cypress.Commands.add('goToItemPage', (name) => {
+    cy.contains(name)
+        .click()
+    cy.url().should('contain', '/inventory-item.html')
 })
