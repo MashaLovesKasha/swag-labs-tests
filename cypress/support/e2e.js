@@ -4,6 +4,7 @@ import './item-commands'
 import './cart-commands'
 import './checkout-commands'
 import './common-commands'
+import 'cypress-mochawesome-reporter/register'
 
 // Cypress global objects
 Cypress.baseUrl = Cypress.config("baseUrl")
