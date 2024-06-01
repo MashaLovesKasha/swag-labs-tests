@@ -2,6 +2,11 @@ beforeEach(() => {
   cy.visit('/')
 })
 
+describe('Checkout flow', () => {
+  it('Customer purchases products', () => {
+
+  })
+})
 
 
 // 1. Customer purchases products

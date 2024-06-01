@@ -2,10 +2,11 @@ beforeEach(() => {
   cy.visit('/')
 })
 
-describe('Log in page', () => {
-  it('Locked out customer fails to log in', () => {
+describe('Login page', () => {
+  it('User is locked out from the platform', () => {
     cy.logIn(Cypress.lockedOutUser, Cypress.password)
-    // It shows us that login didn't happen
+
+    cy.log('Login failed')
     cy.url().should('eq', Cypress.baseUrl)
     cy.get('[data-test="error"]')
         .contains('Epic sadface: Sorry, this user has been locked out.')

@@ -1,9 +1,21 @@
 beforeEach(() => {
   cy.visit('/')
+  cy.logIn(Cypress.standardUser, Cypress.password)
+  cy.log('Login is successful')
+  cy.url().should('contain', '/inventory.html')
 })
 
-
-// Customer sorts product items
-// Given standard customer is logged in
-// When the customer sorts available products in product view
-// Then the products are ordered according to the chosen sort method
+describe('Inventory page', () => {
+  it('Customer sorts product items by price (low to high)', () => {
+    cy.checkSortingByPrice('Price (low to high)')
+  })
+  it('Customer sorts product items by price (high to low)', () => {
+    cy.checkSortingByPrice('Price (high to low)')
+  })
+  it('Customer sorts product items by name (A to Z)', () => {
+    cy.checkSortingByName('Name (A to Z)')
+  })
+  it('Customer sorts product items by name (Z to A)', () => {
+    cy.checkSortingByName('Name (Z to A)')
+  })
+})
